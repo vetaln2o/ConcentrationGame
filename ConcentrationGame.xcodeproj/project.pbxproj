@@ -13,6 +13,7 @@
 		91055DDA21CC2F7A00FE1BA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91055DD921CC2F7A00FE1BA1 /* Assets.xcassets */; };
 		91055DDD21CC2F7A00FE1BA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91055DDB21CC2F7A00FE1BA1 /* LaunchScreen.storyboard */; };
 		91055DE621CC306D00FE1BA1 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91055DE521CC306D00FE1BA1 /* Card.swift */; };
+		91055DE821CC34CB00FE1BA1 /* ConcentrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91055DE721CC34CB00FE1BA1 /* ConcentrationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		91055DDC21CC2F7A00FE1BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		91055DDE21CC2F7A00FE1BA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91055DE521CC306D00FE1BA1 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		91055DE721CC34CB00FE1BA1 /* ConcentrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				91055DD621CC2F7800FE1BA1 /* Main.storyboard */,
 				91055DD421CC2F7800FE1BA1 /* ConcentrationViewController.swift */,
+				91055DE721CC34CB00FE1BA1 /* ConcentrationModel.swift */,
 				91055DE521CC306D00FE1BA1 /* Card.swift */,
 				91055DD921CC2F7A00FE1BA1 /* Assets.xcassets */,
 				91055DE421CC2FA300FE1BA1 /* Supporting Files */,
@@ -149,6 +152,7 @@
 				91055DD521CC2F7800FE1BA1 /* ConcentrationViewController.swift in Sources */,
 				91055DE621CC306D00FE1BA1 /* Card.swift in Sources */,
 				91055DD321CC2F7800FE1BA1 /* AppDelegate.swift in Sources */,
+				91055DE821CC34CB00FE1BA1 /* ConcentrationModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
