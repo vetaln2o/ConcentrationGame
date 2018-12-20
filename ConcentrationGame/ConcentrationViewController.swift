@@ -9,7 +9,11 @@
 import UIKit
 
 class ConcentrationViewController: UIViewController {
-
+    
+    @IBOutlet var cardButtons: [UIButton]!
+    
+    @IBOutlet weak var flipCountLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
