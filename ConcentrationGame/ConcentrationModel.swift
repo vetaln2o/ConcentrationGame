@@ -17,7 +17,7 @@ class Concentration {
         let numberOfPairsOfCards = cardsCount / 2
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
-            cardsList += [card,card]
+            cardsList += [card, card]
         }
         cardsList.shuffle()
     }

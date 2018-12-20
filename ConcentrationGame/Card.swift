@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Card: Hashable {
+struct Card: Hashable {
     
     var identifier: Int
     var isFaceUp = false
