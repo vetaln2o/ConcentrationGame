@@ -11,6 +11,7 @@ import Foundation
 class Concentration {
     
     var cardsList: [Card]
+    private var lastChosenCardIdentifier = [Int]()
     
     init(cardsCount: Int) {
         cardsList = [Card]()
@@ -23,8 +24,23 @@ class Concentration {
     }
     
     func chooseCard(at index: Int) {
-        cardsList[index].isFaceUp = !cardsList[index].isFaceUp
-        print("Card with identifier: \(cardsList[index].identifier) isFaseUp: \(cardsList[index].isFaceUp)")
+        if !lastChosenCardIdentifier.contains(index) {
+            cardsList[index].isFaceUp = !cardsList[index].isFaceUp
+            lastChosenCardIdentifier.append(index)
+            if lastChosenCardIdentifier.count == 3 {
+                checkMatch(between: lastChosenCardIdentifier[0], and: lastChosenCardIdentifier[1])
+                cardsList[lastChosenCardIdentifier[0]].isFaceUp = false
+                cardsList[lastChosenCardIdentifier[1]].isFaceUp = false
+                lastChosenCardIdentifier.remove(at: 0)
+                lastChosenCardIdentifier.remove(at: 0)            }
+        }
+    }
+    
+    private func checkMatch(between lastChosenCardIndex: Int, and newCardIndex: Int) {
+        if cardsList[lastChosenCardIndex] == cardsList[newCardIndex] {
+            cardsList[lastChosenCardIndex].isMatched = true
+            cardsList[newCardIndex].isMatched = true
+        }
     }
     
 }
