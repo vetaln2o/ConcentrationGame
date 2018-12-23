@@ -11,6 +11,8 @@ import Foundation
 class Concentration {
     
     var cardsList: [Card]
+    var scores = 0
+    var flipCount = 0
     private var lastChosenCardIdentifier = [Int]()
     
     init(cardsCount: Int) {
@@ -25,6 +27,7 @@ class Concentration {
     
     func chooseCard(at index: Int) {
         if !lastChosenCardIdentifier.contains(index) {
+            flipCount += 1
             cardsList[index].isFaceUp = !cardsList[index].isFaceUp
             lastChosenCardIdentifier.append(index)
             if lastChosenCardIdentifier.count == 3 {

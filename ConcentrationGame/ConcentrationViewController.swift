@@ -15,21 +15,16 @@ class ConcentrationViewController: UIViewController {
     
     lazy var game = Concentration(cardsCount: cardButtons.count)
     var gameTheme : Theme?
-    var emojis = "🙈👍🤷‍♂️⚾️🎾😂🐶🐱🦊🐏🐺🤯🐷🦃🐭"
-    var cardsEmojis = [Int:String]()
-    
-    var flipCounts = 0 {
-        didSet {
-            flipCountLabel.text = "Flips: \(flipCounts)"
-        }
-    }
+    private var defaultEmojis = "🙈👍🤷‍♂️⚾️🎾😂🐶🐱🦊🐏🐺🤯🐷🦃🐭"
+    private var emojis = ""
+    private var cardsEmojis = [Int:String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = gameTheme?.themeName
         view.backgroundColor = gameTheme?.backgroundColor ?? .white
-        emojis = gameTheme?.emojisList ?? "🙈👍🤷‍♂️⚾️🎾😂🐶🐱🦊🐏🐺🤯🐷🦃🐭"
+        emojis = gameTheme?.emojisList ?? defaultEmojis
         updateViewFromModel()
         
     }
@@ -37,15 +32,13 @@ class ConcentrationViewController: UIViewController {
     @IBAction func touchCard(_ sender: UIButton) {
         if let cardIndex = cardButtons.firstIndex(of: sender), !game.cardsList[cardIndex].isMatched {
             game.chooseCard(at: cardIndex)
-            flipCounts += 1
             updateViewFromModel()
         }
     }
     
     @IBAction func newGame(_ sender: UIButton) {
         game = Concentration(cardsCount: cardButtons.count)
-        flipCounts = 0
-        emojis = gameTheme?.emojisList ?? "🙈👍🤷‍♂️⚾️🎾😂🐶🐱🦊🐏🐺🤯🐷🦃🐭"
+        emojis = gameTheme?.emojisList ?? defaultEmojis
         cardsEmojis = [Int:String]()
         updateViewFromModel()
     }
@@ -53,6 +46,7 @@ class ConcentrationViewController: UIViewController {
     
     func updateViewFromModel() {
         if let themeOfGame = gameTheme {
+            flipCountLabel.text = "Flips: \(game.flipCount)"
             for (cardIndex, card) in game.cardsList.enumerated() {
                 if !card.isMatched {
                     if card.isFaceUp {
