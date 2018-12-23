@@ -32,7 +32,8 @@ class Concentration {
                 cardsList[lastChosenCardIdentifier[0]].isFaceUp = false
                 cardsList[lastChosenCardIdentifier[1]].isFaceUp = false
                 lastChosenCardIdentifier.remove(at: 0)
-                lastChosenCardIdentifier.remove(at: 0)            }
+                lastChosenCardIdentifier.remove(at: 0)
+            }
         }
     }
     

@@ -14,6 +14,7 @@ class ConcentrationViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     
     lazy var game = Concentration(cardsCount: cardButtons.count)
+    var gameTheme : Theme?
     var emojis = "🙈👍🤷‍♂️⚾️🎾😂🐶🐱🦊🐏🐺🤯🐷🦃🐭"
     var cardsEmojis = [Int:String]()
     
@@ -25,8 +26,12 @@ class ConcentrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = gameTheme?.themeName
+        view.backgroundColor = gameTheme?.backgroundColor ?? .white
+        emojis = gameTheme?.emojisList ?? "🙈👍🤷‍♂️⚾️🎾😂🐶🐱🦊🐏🐺🤯🐷🦃🐭"
         updateViewFromModel()
-        print(cardsEmojis)
+        
     }
     
     @IBAction func touchCard(_ sender: UIButton) {
@@ -34,34 +39,35 @@ class ConcentrationViewController: UIViewController {
             game.chooseCard(at: cardIndex)
             flipCounts += 1
             updateViewFromModel()
-        } else {
-            print("Card are not in Buttons List!")
         }
     }
     
     @IBAction func newGame(_ sender: UIButton) {
         game = Concentration(cardsCount: cardButtons.count)
-        print(game.cardsList.count)
         flipCounts = 0
-        emojis = "🙈👍🤷‍♂️⚾️🎾😂🐶🐱🦊🐏🐺🤯🐷🦃🐭"
+        emojis = gameTheme?.emojisList ?? "🙈👍🤷‍♂️⚾️🎾😂🐶🐱🦊🐏🐺🤯🐷🦃🐭"
         cardsEmojis = [Int:String]()
         updateViewFromModel()
     }
     
     
     func updateViewFromModel() {
-        for (cardIndex, card) in game.cardsList.enumerated() {
-            if !card.isMatched {
-                if card.isFaceUp {
-                    cardButtons[cardIndex].backgroundColor = .green
-                    cardButtons[cardIndex].setTitle(emoji(for: card.identifier), for: .normal)
+        if let themeOfGame = gameTheme {
+            for (cardIndex, card) in game.cardsList.enumerated() {
+                if !card.isMatched {
+                    if card.isFaceUp {
+                        cardButtons[cardIndex].backgroundColor = themeOfGame.flipedCardsColor
+                        cardButtons[cardIndex].setAttributedTitle(
+                            NSAttributedString(string: emoji(for: card.identifier),
+                                               attributes: [NSAttributedString.Key.font : UIFont(descriptor: UIFontDescriptor(), size: 40)]), for: .normal)
+                    } else {
+                        cardButtons[cardIndex].backgroundColor = themeOfGame.unflipedCardsColor
+                        cardButtons[cardIndex].setAttributedTitle(nil, for: .normal)
+                    }
                 } else {
-                    cardButtons[cardIndex].backgroundColor = .black
-                    cardButtons[cardIndex].setTitle("", for: .normal)
+                    cardButtons[cardIndex].backgroundColor = themeOfGame.backgroundColor
+                    cardButtons[cardIndex].setAttributedTitle(nil, for: .normal)
                 }
-            } else {
-                cardButtons[cardIndex].backgroundColor = view.backgroundColor
-                cardButtons[cardIndex].setTitle("", for: .normal)
             }
         }
     }
