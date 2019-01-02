@@ -15,6 +15,7 @@ class Concentration {
     var flipCount = 0
     private var lastChosenCardIdentifier = [Int]()
     private var cardsForScoresCount = [Card]()
+    private let userDefaults = UserDefaults.standard
     
     init(cardsCount: Int) {
         cardsList = [Card]()
@@ -38,6 +39,12 @@ class Concentration {
                 cardsList[lastChosenCardIdentifier[1]].isFaceUp = false
                 lastChosenCardIdentifier.remove(at: 0)
                 lastChosenCardIdentifier.remove(at: 0)
+            }
+        }
+        if isGameOver() {
+            scores += 2
+            if scores > getBestScores() ?? -1000 && flipCount <= getBestFlipsCount() ?? 1000 {
+                saveBestScores()
             }
         }
     }
@@ -80,6 +87,19 @@ class Concentration {
             isGameOver = true
         }
         return isGameOver
+    }
+    
+    private func saveBestScores() {
+        userDefaults.set(scores, forKey: "BestScores")
+        userDefaults.set(flipCount, forKey: "BestFlipCount")
+    }
+    
+    private func getBestScores() -> Int? {
+        return userDefaults.object(forKey: "BestScores") as? Int
+    }
+    
+    private func getBestFlipsCount() -> Int? {
+        return userDefaults.object(forKey: "BestFlipCount") as? Int
     }
     
 }

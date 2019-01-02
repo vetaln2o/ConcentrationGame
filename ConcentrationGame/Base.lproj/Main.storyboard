@@ -56,7 +56,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7hw-qf-95O"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xy3-xd-448"/>
+                    <navigationItem key="navigationItem" id="xy3-xd-448">
+                        <barButtonItem key="rightBarButtonItem" title="Best Scores" id="up8-hf-8KQ">
+                            <connections>
+                                <segue destination="CjB-3Y-5N8" kind="show" identifier="" id="2yo-6W-zYU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="themeChooserTableView" destination="5ZY-BS-cec" id="Sau-mF-YQJ"/>
                     </connections>
@@ -279,7 +285,13 @@
                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Title" id="sHU-Ye-vuU"/>
+                                    <navigationItem title="Title" id="sHU-Ye-vuU">
+                                        <barButtonItem key="rightBarButtonItem" title="Best Scores" id="Uj0-n6-Sey">
+                                            <connections>
+                                                <segue destination="CjB-3Y-5N8" kind="show" identifier="Show Alert Scores" id="FHR-jU-nOK"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scores: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Oq-cW-6IQ">
@@ -304,7 +316,6 @@
                                     <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="newGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VTr-4h-Q0P"/>
                                     <segue destination="CjB-3Y-5N8" kind="popoverPresentation" identifier="Show Scores" popoverAnchorView="U8a-5A-aSq" id="0IT-sZ-Cp0">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
@@ -377,8 +388,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRl-De-GQ2">
-                                        <rect key="frame" x="114" y="68" width="31" height="60"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="none" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRl-De-GQ2">
+                                        <rect key="frame" x="76.5" y="68" width="106.5" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -389,8 +400,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEP-Lk-j1P">
-                                        <rect key="frame" x="114" y="204" width="31" height="60"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="none" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEP-Lk-j1P">
+                                        <rect key="frame" x="76.5" y="204" width="106.5" height="60"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -403,29 +414,17 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlo-XY-OAe">
-                                <rect key="frame" x="158" y="624" width="98" height="60"/>
-                                <color key="backgroundColor" red="1" green="0.1083210594" blue="0.027911657369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="Close">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="closeScoresInfo:" destination="CjB-3Y-5N8" eventType="touchUpInside" id="yZf-rX-adK"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Xlo-XY-OAe" firstAttribute="centerX" secondItem="DTS-Id-hME" secondAttribute="centerX" id="L7f-dO-zfp"/>
                             <constraint firstItem="6jj-tT-4lH" firstAttribute="centerY" secondItem="DTS-Id-hME" secondAttribute="centerY" id="Mih-Ns-1V9"/>
                             <constraint firstItem="6jj-tT-4lH" firstAttribute="centerX" secondItem="DTS-Id-hME" secondAttribute="centerX" id="g5b-mC-DbS"/>
-                            <constraint firstItem="Xlo-XY-OAe" firstAttribute="top" secondItem="6jj-tT-4lH" secondAttribute="bottom" constant="10" id="tSk-Xx-EXp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mGt-J1-JaB"/>
                     </view>
                     <connections>
-                        <outlet property="closeButton" destination="Xlo-XY-OAe" id="9Ut-QH-u96"/>
+                        <outlet property="bestFlipsLabel" destination="IEP-Lk-j1P" id="Yym-fh-tcs"/>
+                        <outlet property="bestScoresLabel" destination="dRl-De-GQ2" id="mAP-xJ-1jR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6p4-dA-s0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -452,6 +451,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="FHR-jU-nOK"/>
         <segue reference="idf-xc-m9W"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -90,8 +90,7 @@ class ConcentrationViewController: UIViewController, UIPopoverPresentationContro
             self.newGame()
         }
         let scoresAlertAction = UIAlertAction(title: "Best Scores", style: .default) { (alert) in
-            let bestScoresController = BestScoresViewController()
-            self.navigationController?.pushViewController(bestScoresController, animated: true)
+            self.performSegue(withIdentifier: "Show Alert Scores", sender: self)
         }
         alert.addAction(newGameAlertAction)
         alert.addAction(scoresAlertAction)

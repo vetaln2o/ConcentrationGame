@@ -10,28 +10,21 @@ import UIKit
 
 class BestScoresViewController: UIViewController {
     
-    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var bestScoresLabel: UILabel!
+    @IBOutlet weak var bestFlipsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if self.presentationController?.presentationStyle == .popover {
-            closeButton.isHidden = true
+        
+        let userDefaults = UserDefaults.standard
+        
+        if let bestScores = userDefaults.value(forKey: "BestScores") as? Int {
+            bestScoresLabel.text = String(bestScores)
+        }
+        
+        if let bestFlips = userDefaults.value(forKey: "BestFlipCount") as? Int {
+            bestFlipsLabel.text = String(bestFlips)
         }
     }
-    
-    @IBAction func closeScoresInfo(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
