@@ -32,7 +32,6 @@ class Concentration {
             cardsList[index].isFaceUp = !cardsList[index].isFaceUp
             lastChosenCardIdentifier.append(index)
             cardsForScoresCount.append(cardsList[index])
-            print(cardsForScoresCount)
             if lastChosenCardIdentifier.count == 3 {
                 checkMatch(between: lastChosenCardIdentifier[0], and: lastChosenCardIdentifier[1])
                 cardsList[lastChosenCardIdentifier[0]].isFaceUp = false
@@ -67,6 +66,21 @@ class Concentration {
                 cardsForScoresCount.remove(at: 0)
             }
         }
+    }
+    
+    func isGameOver() -> Bool {
+        var isGameOver = false
+        let isNotMatchCardsCount = cardsList.filter { (card) -> Bool in
+            return !card.isMatched
+        }.count
+        let isFaceUpCardsCount = cardsList.filter { (card) -> Bool in
+            return (card.isFaceUp && !card.isMatched)
+        }.count
+        if isNotMatchCardsCount == 2 && isFaceUpCardsCount == 2 {
+            isGameOver = true
+        }
+        print("\(isNotMatchCardsCount) - \(isFaceUpCardsCount)")
+        return isGameOver
     }
     
 }

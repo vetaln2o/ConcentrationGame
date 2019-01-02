@@ -38,7 +38,7 @@ class ConcentrationViewController: UIViewController {
         }
     }
     
-    @IBAction func newGame(_ sender: UIButton) {
+    @IBAction func newGame(_ sender: UIButton? = nil) {
         game = Concentration(cardsCount: cardButtons.count)
         emojis = gameTheme?.emojisList ?? defaultEmojis
         cardsEmojis = [Int:String]()
@@ -67,6 +67,18 @@ class ConcentrationViewController: UIViewController {
                 }
             }
         }
+        if game.isGameOver() {
+            showAlert(with: "Your scores: \(game.scores) for \(game.flipCount) flips")
+        }
+    }
+    
+    private func showAlert(with message: String) {
+        let alert = UIAlertController(title: "The Game is over!", message: message, preferredStyle: .alert)
+        let newGameAlertAction = UIAlertAction(title: "New game", style: .default) { (alert) in
+            self.newGame()
+        }
+        alert.addAction(newGameAlertAction)
+        self.present(alert, animated: true)
     }
     
     private func emoji(for cardWithIdentifier: Int) -> String {
