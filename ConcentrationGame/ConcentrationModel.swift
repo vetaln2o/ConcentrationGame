@@ -79,7 +79,6 @@ class Concentration {
         if isNotMatchCardsCount == 2 && isFaceUpCardsCount == 2 {
             isGameOver = true
         }
-        print("\(isNotMatchCardsCount) - \(isFaceUpCardsCount)")
         return isGameOver
     }
     

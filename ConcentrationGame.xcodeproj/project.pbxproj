@@ -16,6 +16,7 @@
 		91055DE821CC34CB00FE1BA1 /* ConcentrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91055DE721CC34CB00FE1BA1 /* ConcentrationModel.swift */; };
 		916D036821CFBA3400B0DB1A /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D036721CFBA3400B0DB1A /* Theme.swift */; };
 		916D036A21CFBB0B00B0DB1A /* ThemeChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916D036921CFBB0B00B0DB1A /* ThemeChooserViewController.swift */; };
+		9199853E21DCE4DB00A91BDD /* BestScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199853D21DCE4DB00A91BDD /* BestScoresViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		91055DE721CC34CB00FE1BA1 /* ConcentrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationModel.swift; sourceTree = "<group>"; };
 		916D036721CFBA3400B0DB1A /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		916D036921CFBB0B00B0DB1A /* ThemeChooserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChooserViewController.swift; sourceTree = "<group>"; };
+		9199853D21DCE4DB00A91BDD /* BestScoresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestScoresViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				91055DD621CC2F7800FE1BA1 /* Main.storyboard */,
+				9199853D21DCE4DB00A91BDD /* BestScoresViewController.swift */,
 				916D036921CFBB0B00B0DB1A /* ThemeChooserViewController.swift */,
 				91055DD421CC2F7800FE1BA1 /* ConcentrationViewController.swift */,
 				91055DE721CC34CB00FE1BA1 /* ConcentrationModel.swift */,
@@ -157,6 +160,7 @@
 			files = (
 				91055DD521CC2F7800FE1BA1 /* ConcentrationViewController.swift in Sources */,
 				91055DE621CC306D00FE1BA1 /* Card.swift in Sources */,
+				9199853E21DCE4DB00A91BDD /* BestScoresViewController.swift in Sources */,
 				916D036A21CFBB0B00B0DB1A /* ThemeChooserViewController.swift in Sources */,
 				916D036821CFBA3400B0DB1A /* Theme.swift in Sources */,
 				91055DD321CC2F7800FE1BA1 /* AppDelegate.swift in Sources */,

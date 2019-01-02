@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConcentrationViewController: UIViewController {
+class ConcentrationViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet var cardButtons: [UIButton]!
     @IBOutlet weak var flipCountLabel: UILabel!
@@ -23,12 +23,24 @@ class ConcentrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = gameTheme?.themeName
         view.backgroundColor = gameTheme?.backgroundColor ?? .white
         emojis = gameTheme?.emojisList ?? defaultEmojis
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateViewFromModel()
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Show Scores" {
+            if let destanation = segue.destination as? BestScoresViewController {
+                if let ppc = destanation.popoverPresentationController {
+                    ppc.delegate = self
+                }
+            }
+        }
     }
     
     @IBAction func touchCard(_ sender: UIButton) {
@@ -77,7 +89,12 @@ class ConcentrationViewController: UIViewController {
         let newGameAlertAction = UIAlertAction(title: "New game", style: .default) { (alert) in
             self.newGame()
         }
+        let scoresAlertAction = UIAlertAction(title: "Best Scores", style: .default) { (alert) in
+            let bestScoresController = BestScoresViewController()
+            self.navigationController?.pushViewController(bestScoresController, animated: true)
+        }
         alert.addAction(newGameAlertAction)
+        alert.addAction(scoresAlertAction)
         self.present(alert, animated: true)
     }
     
@@ -87,6 +104,10 @@ class ConcentrationViewController: UIViewController {
             cardsEmojis[cardWithIdentifier] = String(emojis.remove(at: randomStringIndex))
         }
         return cardsEmojis[cardWithIdentifier] ?? ""
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
 
 }
