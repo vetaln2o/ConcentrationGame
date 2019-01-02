@@ -12,6 +12,8 @@ class ConcentrationViewController: UIViewController {
     
     @IBOutlet var cardButtons: [UIButton]!
     @IBOutlet weak var flipCountLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     
     lazy var game = Concentration(cardsCount: cardButtons.count)
     var gameTheme : Theme?
@@ -47,6 +49,7 @@ class ConcentrationViewController: UIViewController {
     func updateViewFromModel() {
         if let themeOfGame = gameTheme {
             flipCountLabel.text = "Flips: \(game.flipCount)"
+            scoreLabel.text = "Scores: \(game.scores)"
             for (cardIndex, card) in game.cardsList.enumerated() {
                 if !card.isMatched {
                     if card.isFaceUp {
@@ -66,7 +69,7 @@ class ConcentrationViewController: UIViewController {
         }
     }
     
-    func emoji(for cardWithIdentifier: Int) -> String {
+    private func emoji(for cardWithIdentifier: Int) -> String {
         if cardsEmojis[cardWithIdentifier] == nil, emojis.count > 0 {
             let randomStringIndex = emojis.index(emojis.startIndex, offsetBy: Int(arc4random_uniform(UInt32(emojis.count))))
             cardsEmojis[cardWithIdentifier] = String(emojis.remove(at: randomStringIndex))

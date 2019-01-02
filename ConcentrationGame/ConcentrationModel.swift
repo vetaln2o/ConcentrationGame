@@ -14,6 +14,7 @@ class Concentration {
     var scores = 0
     var flipCount = 0
     private var lastChosenCardIdentifier = [Int]()
+    private var cardsForScoresCount = [Card]()
     
     init(cardsCount: Int) {
         cardsList = [Card]()
@@ -30,6 +31,8 @@ class Concentration {
             flipCount += 1
             cardsList[index].isFaceUp = !cardsList[index].isFaceUp
             lastChosenCardIdentifier.append(index)
+            cardsForScoresCount.append(cardsList[index])
+            print(cardsForScoresCount)
             if lastChosenCardIdentifier.count == 3 {
                 checkMatch(between: lastChosenCardIdentifier[0], and: lastChosenCardIdentifier[1])
                 cardsList[lastChosenCardIdentifier[0]].isFaceUp = false
@@ -44,6 +47,25 @@ class Concentration {
         if cardsList[lastChosenCardIndex] == cardsList[newCardIndex] {
             cardsList[lastChosenCardIndex].isMatched = true
             cardsList[newCardIndex].isMatched = true
+            scores += 2
+            cardsForScoresCount = [Card]()
+            cardsForScoresCount.append(cardsList[newCardIndex])
+        } else {
+            if cardsForScoresCount.count == 5 {
+                var penaltiScore = false
+                var tempCardsForScores = cardsForScoresCount
+                for _ in 0...3 {
+                    let deletedCard = tempCardsForScores.remove(at: 0)
+                    if tempCardsForScores.contains(deletedCard) {
+                        penaltiScore = true
+                    }
+                }
+                if penaltiScore {
+                    scores -= 1
+                }
+                cardsForScoresCount.remove(at: 0)
+                cardsForScoresCount.remove(at: 0)
+            }
         }
     }
     
