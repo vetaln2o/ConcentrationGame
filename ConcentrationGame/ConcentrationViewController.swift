@@ -14,8 +14,11 @@ class ConcentrationViewController: UIViewController, UIPopoverPresentationContro
     @IBOutlet weak var flipCountLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     
+    private var visibleCardButtons : [UIButton]! {
+        return cardButtons.filter { !$0.superview!.isHidden }
+    }
     
-    lazy var game = Concentration(cardsCount: cardButtons.count)
+    lazy var game = Concentration(cardsCount: 20)
     var gameTheme : Theme?
     private var defaultEmojis = "🙈👍🤷‍♂️⚾️🎾😂🐶🐱🦊🐏🐺🤯🐷🦃🐭"
     private var emojis = ""
@@ -28,8 +31,7 @@ class ConcentrationViewController: UIViewController, UIPopoverPresentationContro
         emojis = gameTheme?.emojisList ?? defaultEmojis
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLayoutSubviews() {
         updateViewFromModel()
     }
     
@@ -44,19 +46,18 @@ class ConcentrationViewController: UIViewController, UIPopoverPresentationContro
     }
     
     @IBAction func touchCard(_ sender: UIButton) {
-        if let cardIndex = cardButtons.firstIndex(of: sender), !game.cardsList[cardIndex].isMatched {
+        if let cardIndex = visibleCardButtons.firstIndex(of: sender), !game.cardsList[cardIndex].isMatched {
             game.chooseCard(at: cardIndex)
             updateViewFromModel()
         }
     }
     
     @IBAction func newGame(_ sender: UIButton? = nil) {
-        game = Concentration(cardsCount: cardButtons.count)
+        game = Concentration(cardsCount: visibleCardButtons.count)
         emojis = gameTheme?.emojisList ?? defaultEmojis
         cardsEmojis = [Int:String]()
         updateViewFromModel()
     }
-    
     
     func updateViewFromModel() {
         if let themeOfGame = gameTheme {
@@ -65,17 +66,17 @@ class ConcentrationViewController: UIViewController, UIPopoverPresentationContro
             for (cardIndex, card) in game.cardsList.enumerated() {
                 if !card.isMatched {
                     if card.isFaceUp {
-                        cardButtons[cardIndex].backgroundColor = themeOfGame.flipedCardsColor
-                        cardButtons[cardIndex].setAttributedTitle(
+                        visibleCardButtons[cardIndex].backgroundColor = themeOfGame.flipedCardsColor
+                        visibleCardButtons[cardIndex].setAttributedTitle(
                             NSAttributedString(string: emoji(for: card.identifier),
                                                attributes: [NSAttributedString.Key.font : UIFont(descriptor: UIFontDescriptor(), size: 40)]), for: .normal)
                     } else {
-                        cardButtons[cardIndex].backgroundColor = themeOfGame.unflipedCardsColor
-                        cardButtons[cardIndex].setAttributedTitle(nil, for: .normal)
+                        visibleCardButtons[cardIndex].backgroundColor = themeOfGame.unflipedCardsColor
+                        visibleCardButtons[cardIndex].setAttributedTitle(nil, for: .normal)
                     }
                 } else {
-                    cardButtons[cardIndex].backgroundColor = themeOfGame.backgroundColor
-                    cardButtons[cardIndex].setAttributedTitle(nil, for: .normal)
+                    visibleCardButtons[cardIndex].backgroundColor = themeOfGame.backgroundColor
+                    visibleCardButtons[cardIndex].setAttributedTitle(nil, for: .normal)
                 }
             }
         }
